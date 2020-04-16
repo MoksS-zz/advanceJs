@@ -1,6 +1,6 @@
 "use strict"
 
-function allKeysAndSymbols (object) {
+function allKeysAndSymbols (obj) {
   const descriptors = Object.getOwnPropertyDescriptors(Object.prototype);
   let result = Object.keys(descriptors)
   let proto = obj;
@@ -8,11 +8,11 @@ function allKeysAndSymbols (object) {
     const symbol = Object.getOwnPropertySymbols(proto);
     const properties = Object.keys(Object.getOwnPropertyDescriptors(proto));
     result = [...result, ...properties, ...symbol];
-    proto = proto.__proto__ 
+    proto = Object.getPrototypeOf(proto); // proto.__proto__
   }
 
   result =  new Set(result);
-  return result;
+  return [...result];
 }
 
 const protObj = {
