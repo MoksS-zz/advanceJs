@@ -18,7 +18,7 @@ console.log(symbol in object); // true
 
 const proxy = new Proxy(object, {
   has(target, prop) {
-    return Object.getOwnPropertyDescriptor(target, prop);
+    return target.hasOwnProperty(prop);
   }
 })
 
